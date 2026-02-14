@@ -686,6 +686,7 @@
     }
 
     function playWrongSound() {
+      return;
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
       // ブ音（低め）
@@ -728,6 +729,7 @@
 
     // 読み上げ処理
     function speak(text) {
+      return;
       // recognition.stop();
 
       const rate = document.getElementById("rate").value;
@@ -801,3 +803,4 @@
 
 
 </body></html>
+
