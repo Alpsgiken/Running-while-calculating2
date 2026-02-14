@@ -605,13 +605,14 @@
 
       const result = word.split("").map(ch => kanjiToDigit[ch] ?? ch).join("");
 
-      if (result.length > 0) {
-        document.getElementById('number_result').innerText = result;
-      }
-      if (pass.length > 0) {    
+      if (pass.length > 0) {
         document.getElementById('fullVoice_result').innerText = pass;
       }
-      
+      if (result.length == 0) {
+        return;
+      }
+      document.getElementById('number_result').innerText = result;
+
       if (result === String(c)) {
         playPingPong();
         maruDiv.innerText = "〇";
@@ -807,5 +808,6 @@
 
 
 </body></html>
+
 
 
