@@ -42,7 +42,11 @@
       margin: 0;
       font-weight: bold;
     ">計算ランニング</h2>
-    <button onclick="fetchGeminiQuestion();">テスト</button>
+    <div style="display:flex; gap: 10px;">
+      <button onclick="fetchGeminiQuestion();">テスト</button>
+      <button onclick="detectLevel -= 0.05;">🔽</button>
+      <button onclick="detectLevel += 0.05;">🔼</button>
+    </div>
     <div style="display:flex;height: 12%;background-color: white;gap: 30px;border: 1px solid black;border-radius: 10px;">
       <div style="display: flex; gap: 10px; align-items: center;padding:20px;font-size: 20px;">
         <div>残り時間</div>
@@ -94,7 +98,7 @@
           </div>
           <div id="instruction"
                style="
-                  font-size: 16px;
+                  font-size: 18px;
                   position: absolute;
                   font-weight: bold;
                   color: blue;
@@ -827,6 +831,7 @@
 
 
 </body></html>
+
 
 
 
