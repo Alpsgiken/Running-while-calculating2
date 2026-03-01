@@ -462,17 +462,19 @@
 
     function getChangeCount(keypoints) {
         let videoObj = document.getElementById('video_parent').getBoundingClientRect();
-        /*左手首*/
+        let leftRect = document.getElementById('left_rect');
+        let rightRect = document.getElementById('right_rect');
+
+      /*左手首*/
         const lw = keypoints.find(p => p.name === 'left_wrist');
-        const lwOk = lw && lw.score > detectLevel && (lw.y + 15) < videoObj.height;
+        const lwOk = lw && lw.score > detectLevel && (lw.y + 30) < videoObj.height;
+        leftRect.style.display = !lw || (lw.y + 30 > videoObj.height) ? 'none' : 'block';          
         if (lwOk) {
           console.log("### lw score = " + lw.score);
           document.getElementById('div_left_wrist').innerText = lw.y;
           document.getElementById('div_left_diff').innerText = Math.abs(leftWristY - lw.y);
           leftWristScore = lw.score;
           leftWristY = lw.y;
-          let leftRect = document.getElementById('left_rect');
-          leftRect.style.display = (lw.y + 15 > videoObj.height) ? 'none' : 'block';          
           /*左手首のy座標（高さ）*/
           leftRect.style.top = videoObj.top + lw.y + "px";
           /*左手首のx座標（横）*/
@@ -481,15 +483,14 @@
 
         /*右手首*/
         const rw = keypoints.find(p => p.name === 'right_wrist');
-        const rwOk = rw && rw.score > detectLevel && (rw.y + 15) < videoObj.height;
+        const rwOk = rw && rw.score > detectLevel && (rw.y + 30) < videoObj.height;
+        rightRect.style.display = !rw || (rw.y + 30 > videoObj.height) ? 'none' : 'block';
         if (rwOk) {
           console.log("### rw score = " + rw.score);
           document.getElementById('div_right_wrist').innerText = rw.y;
           document.getElementById('div_right_diff').innerText = Math.abs(rightWristY - rw.y);
           rightWristScore = rw.score;
           rightWristY = rw.y;
-          let rightRect = document.getElementById('right_rect');
-          rightRect.style.display = (rw.y + 15 > videoObj.height) ? 'none' : 'block';
           /*右手首のy座標（高さ）*/
           rightRect.style.top = videoObj.top + rw.y + "px";
           /*右手首のx座標（横）*/
@@ -835,6 +836,7 @@
 
 
 </body></html>
+
 
 
 
