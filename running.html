@@ -253,6 +253,7 @@
     let detectLevel = 0.1;
 
     //脳トレ用変数
+    let brainQuestionStatus = 0;
     let brainQuestionText = null;
     let brainAnswerText = null;
     let brainTarget = 0;
@@ -416,7 +417,7 @@
 
     async function detectLoop() {
       isRunning = await isRunningCheck();
-      if (isRunning && (!questionText || questionText.length == 0) && brainQuestionText == null) {
+      if (isRunning && (!questionText || questionText.length == 0)) {
         [questionText, answerText] = generateCalcQuestion();
         questionDiv.innerText = questionText;
       }
@@ -808,6 +809,8 @@
     }
 
     async function fetchGeminiQuestion() {
+      if (brainQuestionStatus > 0) return;
+      brainQuestionStatus = 1;
       try {
         const res = await fetch("https://nlkabje6na.execute-api.ap-southeast-2.amazonaws.com", {
           method: "POST",
@@ -833,6 +836,8 @@
         
       } catch (e) {
         console.error("Gemini取得失敗", e);
+      } finally {
+        brainQuestionStatus = 0;
       }
     }
     
@@ -842,6 +847,7 @@
 
 
 </body></html>
+
 
 
 
