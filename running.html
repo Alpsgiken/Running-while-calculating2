@@ -457,6 +457,7 @@
         /*左手首*/
         const lw = keypoints.find(p => p.name === 'left_wrist');
         if (lw && lw.score > detectLevel) {
+          console.log("### lw score = " + lw.score);
           document.getElementById('div_left_wrist').innerText = lw.y;
           document.getElementById('div_left_diff').innerText = Math.abs(leftWristY - lw.y);
           leftWristScore = lw.score;
@@ -471,6 +472,7 @@
         /*右手首*/
         const rw = keypoints.find(p => p.name === 'right_wrist');
         if (rw && rw.score > detectLevel) {
+          console.log("### rw score = " + rw.score);
           document.getElementById('div_right_wrist').innerText = rw.y;
           document.getElementById('div_right_diff').innerText = Math.abs(rightWristY - rw.y);
           rightWristScore = rw.score;
@@ -820,6 +822,7 @@
 
 
 </body></html>
+
 
 
 
