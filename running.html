@@ -530,8 +530,8 @@
     // 音声認識の初期化
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.lang = 'ja-JP'; // 日本語
-    recognition.interimResults = false; // 確定結果のみ
-    recognition.continuous = true; // 常時認識
+    recognition.interimResults = true; // 確定結果のみ
+    recognition.continuous = false; // 常時認識
 
     // 音声認識の結果を受け取る
     recognition.onresult = function(event) {
@@ -837,6 +837,7 @@
 
 
 </body></html>
+
 
 
 
