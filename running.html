@@ -491,6 +491,7 @@
         if (lw && lw.score > detectLevel && rw && rw.score > detectLevel) {
           if ((rightWristY > leftWristY && whichUp == 0) ||
             (rightWristY < leftWristY && whichUp == 1)) {
+            console.log("@@@ lw.score = " + lw.score + ", rw.score = " + rw.score);
             changeCount++;
             totalCount++;
           }
@@ -822,6 +823,7 @@
 
 
 </body></html>
+
 
 
 
