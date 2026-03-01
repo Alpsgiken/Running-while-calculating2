@@ -416,11 +416,14 @@
 
     async function detectLoop() {
       isRunning = await isRunningCheck();
-      instructionDiv.style.display = isRunning ? "none" : "block";
-      if (isRunning && questionText.length == 0) {
+      if (isRunning && (!questionText || questionText.length == 0) && brainQuestionText == null) {
         [questionText, answerText] = generateCalcQuestion();
         questionDiv.innerText = questionText;
       }
+      if (questionText && questionText.length > 0) {
+          instructionDiv.style.display = isRunning ? "none" : "block";  //走ってくださいを消す
+      }
+
       requestAnimationFrame(detectLoop);
     }
 
@@ -609,6 +612,8 @@
         } else if (stQuestionType == "brain_training") {
           question = brainQuestionText;
           answer = brainAnswerText;
+          brainQuestionText = null;
+          brainAnswerText = null;
           fetchGeminiQuestion();
         }
       
@@ -620,7 +625,7 @@
       if (pass.length > 0) {
         fullVoice_result.innerText = pass;
       }
-      if (questionText.length > 0 && !isRunning) return;
+      if (questionText && questionText.length > 0 && !isRunning) return;
 
       const result = word.split("").map(ch => kanjiToDigit[ch] ?? ch).join("");
       if (result.length == 0) {
@@ -837,6 +842,7 @@
 
 
 </body></html>
+
 
 
 
