@@ -261,8 +261,12 @@
       stMinutes = stMinutes == 0 ? 600000 : stMinutes;
       
       if (stQuestionType == "brain_training") {
+        questionDiv.css("font-size", "20");
         fetchGeminiQuestion();
-      }      
+      } else {
+        questionDiv.css("font-size", "60");
+      }
+      
       startListening();
       loadVoices();
       speechSynthesis.onvoiceschanged = loadVoices;
@@ -823,6 +827,7 @@
 
 
 </body></html>
+
 
 
 
