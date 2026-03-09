@@ -598,15 +598,12 @@
 
     function generateCalcQuestion() {
         let diffRand = Math.random();
-        let num1 = getDfficulty() == 0 ? 9 : (diffRand < 0.4 ? 9 : 99);
-        let num2 = getDfficulty() <= 1 ? 9 : (diffRand < 0.8 ? 9 : 99);
-        
+        let num1 = getDfficulty() <= 1 ? 10 : (diffRand < 0.8 ? 10 : 100);
+        let num2 = getDfficulty() == 0 ? 10 : (diffRand < 0.4 ? 10 : 100);
         let question;
         let answer;
-        
-        // ここで「文字数が1なら」という判定が正しく機能するようになります
-        scoreFlag = String(num1).length == 1 && String(num2).length == 1 ? 1 :
-                    String(num1).length == 1 && String(num2).length != 1 ? 2 : 3;
+        scoreFlag = num1.length == 1 && num2.length == 1 ? 1 :
+                    num1.length == 1 && num2.length != 1 ? 2 : 3;
 
         if (stQuestionType.startsWith("calc_"))
         {
@@ -893,6 +890,7 @@
 
 
 </body></html>
+
 
 
 
