@@ -372,13 +372,7 @@
         
 
         // グラフに追加
-        const chartData = store.chart.data.datasets[0].data;
-        if (chartData.length > 100) {
-          chartData.shift();
-        }
-        chartData.push(heartRate);
-
-        store.chart.update();
+        updateChart(heartRate);
 
       }, 1000);
     }
@@ -853,3 +847,4 @@
 
 
 </body></html>
+
