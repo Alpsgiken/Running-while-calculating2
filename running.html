@@ -260,7 +260,7 @@
     const brainMax = 5;
 
     async function init() {
-      initChart();
+      // initChart();
       stQuestionType = stQuestionType == null ? "calc_plus" : stQuestionType;
       stDifficulty = stDifficulty == null ? "easy" : stDifficulty;
       stAge = stAge == 0 ? 20 : stAge;
@@ -373,7 +373,14 @@
         
 
         // グラフに追加
-        updateChart(heartRate);
+        // updateChart(heartRate);
+        const chartData = store.chart.data.datasets[0].data;
+        if (chartData.length > 100) {
+          chartData.shift();
+        }
+        chartData.push(heartRate);
+
+        store.chart.update();
 
       }, 1000);
     }
@@ -846,6 +853,37 @@
         brainQuestionStatus = 0;
       }
     }
+
+    const store = {};
+
+          store.chart = new Chart(document.querySelector('#chart').getContext('2d'), {
+            type: 'line',
+            data: {
+              labels: Array(100),
+              datasets: [{
+                label: 'Heart Rate (bpm)',
+                backgroundColor: '#f55',
+                borderColor: '#f55',
+                fill: false,
+                data: []
+              }]
+            },
+            options: {
+              responsive: false,
+              duration: 300,
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      min: 60,
+                      max: 200,
+                      stepSize: 10
+                    }
+                  }
+                ]
+              }
+            }
+          });
     
     init();
   </script>
@@ -853,6 +891,7 @@
 
 
 </body></html>
+
 
 
 
