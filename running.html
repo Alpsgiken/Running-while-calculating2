@@ -602,8 +602,8 @@
         let num2 = getDfficulty() == 0 ? 10 : (diffRand < 0.4 ? 10 : 100);
         let question;
         let answer;
-        scoreFlag = num1.length == 1 && num2.length == 1 ? 1 :
-                    num1.length == 1 && num2.length != 1 ? 2 : 3;
+        scoreFlag = String(num1).length == 1 && String(num2).length == 1 ? 1 :
+            String(num1).length == 1 && String(num2).length != 1 ? 2 : 3;
 
         if (stQuestionType.startsWith("calc_"))
         {
@@ -890,6 +890,7 @@
 
 
 </body></html>
+
 
 
 
