@@ -258,7 +258,8 @@
     let brainAnswerText = null;
     let brainTarget = 0;
     const brainMax = 5;
-
+    
+    document.getElementById('scoreShow').innerText = `${score}点`;
     async function init() {
       // initChart();
       stQuestionType = stQuestionType == null ? "calc_plus" : stQuestionType;
@@ -889,6 +890,7 @@
 
 
 </body></html>
+
 
 
 
