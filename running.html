@@ -770,56 +770,56 @@
       synth.speak(utter);
     }
 
-    function initChart() {
-      const ctx = document.querySelector('#chart').getContext('2d');
-      store.chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: Array(100).fill(""),
-          datasets: [{
-            label: 'Heart Rate (bpm)',
-            backgroundColor: 'rgba(255, 85, 85, 0.2)',
-            borderColor: '#f55',
-            borderWidth: 2,
-            pointRadius: 0,
-            fill: false,
-            data: []
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: { duration: 300 },
-          scales: {
-            yAxes: [{
-              ticks: {
-                min: 60,
-                max: 200,
-                stepSize: 20
-              }
-            }],
-            xAxes: [{ display: false }]
-          }
-        }
-      });
-    }
+    // function initChart() {
+    //   const ctx = document.querySelector('#chart').getContext('2d');
+    //   store.chart = new Chart(ctx, {
+    //     type: 'line',
+    //     data: {
+    //       labels: Array(100).fill(""),
+    //       datasets: [{
+    //         label: 'Heart Rate (bpm)',
+    //         backgroundColor: 'rgba(255, 85, 85, 0.2)',
+    //         borderColor: '#f55',
+    //         borderWidth: 2,
+    //         pointRadius: 0,
+    //         fill: false,
+    //         data: []
+    //       }]
+    //     },
+    //     options: {
+    //       responsive: true,
+    //       maintainAspectRatio: false,
+    //       animation: { duration: 300 },
+    //       scales: {
+    //         yAxes: [{
+    //           ticks: {
+    //             min: 60,
+    //             max: 200,
+    //             stepSize: 20
+    //           }
+    //         }],
+    //         xAxes: [{ display: false }]
+    //       }
+    //     }
+    //   });
+    // }
 
-    function updateChart(newValue) {
-      const chart = store.chart;
-      const maxPoints = 100;
+    // function updateChart(newValue) {
+    //   const chart = store.chart;
+    //   const maxPoints = 100;
 
-      // ラベルとデータを追加
-      chart.data.labels.push("");
-      chart.data.datasets[0].data.push(newValue);
+    //   // ラベルとデータを追加
+    //   chart.data.labels.push("");
+    //   chart.data.datasets[0].data.push(newValue);
 
-      // 最大数を超えたら先頭を削除
-      if (chart.data.labels.length > maxPoints) {
-        chart.data.labels.shift();
-        chart.data.datasets[0].data.shift();
-      }
+    //   // 最大数を超えたら先頭を削除
+    //   if (chart.data.labels.length > maxPoints) {
+    //     chart.data.labels.shift();
+    //     chart.data.datasets[0].data.shift();
+    //   }
 
-      chart.update();
-    }
+    //   chart.update();
+    // }
 
 
     async function fetchGeminiQuestion() {
@@ -883,13 +883,15 @@
               }
             }
           });
-    
-    init();
+    window.onload = () => {
+      init();
+    };
   </script>
 
 
 
 </body></html>
+
 
 
 
