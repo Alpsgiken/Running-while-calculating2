@@ -42,7 +42,8 @@
       margin: 0;
       font-weight: bold;
     ">計算ランニング</h2>
-    <div style="display:flex; gap: 10px;">
+    <!-- テスト用のボタンと調整ボタン -->
+    <div style="display:none; gap: 10px;">
       <button onclick="fetchGeminiQuestion();">テスト</button>
       <button onclick="detectLevel -= 0.05;">🔽</button>
       <button onclick="detectLevel += 0.05;">🔼</button>
@@ -141,8 +142,8 @@
         flex-direction: column;
         height: 91%; /* 必要に応じて高さを調整 */
       ">
-        <div id="distanceshow"></div>
-        <div id="speed"></div>
+        <div id="distanceshow" style="font-size:30px"></div>
+        <div id="speed" style="font-size:30px"></div>
         <div style="flex-grow: 1;"></div>
         <button id="TOP" style="
           padding: 12px 30px;
@@ -250,7 +251,7 @@
     const store = {};
     let initStartFlag = false;
     let isRunning = false;
-    let detectLevel = 0.1;
+    let detectLevel = 0.2;
 
     //脳トレ用変数
     let brainQuestionStatus = 0;
@@ -296,17 +297,25 @@
       detectLoop();
     }
 
+    // 1ステップあたり 0.8m と仮定（左右入れ替え1回 = 0.8m）
+    let distancePerStepMeters = 0.8;
+
     const age = stAge;
     if(age == 25){
       MaxHr = 200;
+      distancePerStepMeters = 0.8;
     }else if(age == 35){
       MaxHr = 190;
+      distancePerStepMeters = 0.7;
     }else if(age == 45){
       MaxHr = 180;
+      distancePerStepMeters = 0.6;
     }else if(age == 55){
       MaxHr = 170;
+      distancePerStepMeters = 0.5;
     }else if(age == 65){
       MaxHr = 160;
+      distancePerStepMeters = 0.4;
     }
 
     // 1秒ごとに速度と心拍数を更新
@@ -318,9 +327,6 @@
         // この1秒間に増えた回数
         const deltaCount = currentCount - previousCount;
         previousCount = currentCount;
-
-        // 1ステップあたり 0.8m と仮定（左右入れ替え1回 = 0.8m）
-        const distancePerStepMeters = 0.8;
 
         // この1秒間の移動距離（m）
         const distanceThisSecondMeters = deltaCount * distancePerStepMeters;
@@ -556,7 +562,7 @@
       const kanjiToDigit = {
         "一": "1", "二": "2", "三": "3", "四": "4", "五": "5",
         "六": "6", "七": "7", "八": "8", "九": "9",
-        "十": "10", "百": "100"
+        "十": "10", "百": "100", "千": "1000", "万": "10000"
       };
 
 
@@ -847,25 +853,3 @@
 
 
 </body></html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
