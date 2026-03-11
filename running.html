@@ -418,11 +418,13 @@
       }
 
       if (countDown == 0) {
-        //localStorage.setItem('minutes', stMinutes);
-        localStorage.setItem('distance', distance);
-        localStorage.setItem('score', score);
-        window.location.href = 'result.html';
-      }
+          //localStorage.setItem('minutes', stMinutes);
+          localStorage.setItem('distance', distance);
+          localStorage.setItem('score', score);
+          window.location.href = 'result.html';
+        }
+
+      
     }
 
 
@@ -637,6 +639,16 @@
       if (pass.length > 0) {
         fullVoice_result.innerText = pass;
       }
+      if (pass.includes("パス")) {
+        //パスを宣言した場合、スコアを-1し、別の問題を出題する
+        questionText = "";
+        answerText = "";
+        questionDiv.innerText = questionText;
+        score--;
+        console.log("パスしました");
+        addQuestionCount();
+        return;
+      }
       if (questionText && questionText.length > 0 && !isRunning) return;
 
       const result = word.split("").map(ch => kanjiToDigit[ch] ?? ch).join("");
@@ -645,6 +657,8 @@
       }
       answerDiv.innerText = result;
 
+
+      
       if (Number(result) == answerText) {
         playPingPong();
         maruDiv.style.display = "block";  //⭕️を出す
@@ -658,18 +672,14 @@
         }
         await new Promise(resolve => setTimeout(resolve, 800)); 
         maruDiv.style.display = "none";   //⭕️を消す
+        questionCount++;
+        
 
         // 正解したら次の問題を出す
         questionText = "";
         answerText = "";
         questionDiv.innerText = questionText;
-      } else if (pass.includes("パス")) {
-        //パスを宣言した場合、スコアを-1し、別の問題を出題する
-        questionText = "";
-        answerText = "";
-        questionDiv.innerText = questionText;
-        score--;
-        console.log("パスしました");
+      
       } else {
           batuDiv.style.display = "block"; 
           playWrongSound();
@@ -893,18 +903,6 @@
 
 
 </body></html>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
